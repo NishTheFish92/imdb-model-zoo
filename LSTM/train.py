@@ -176,7 +176,7 @@ if __name__ == "__main__":
     W_xo = (torch.randn(embed_dim, hidden_dim, device=device) * 0.01).requires_grad_()
     W_ho = (torch.randn(hidden_dim, hidden_dim, device=device) / hidden_dim ** 0.5).requires_grad_()
     b_o = torch.zeros(hidden_dim, device=device, requires_grad=True)
-
+    # Classifier layer
     W_hy = (torch.randn(hidden_dim, 1, device=device) * 0.01).requires_grad_()
     b_y = torch.zeros(1, device=device, requires_grad=True)
 
@@ -190,7 +190,7 @@ if __name__ == "__main__":
 
     # 27 epochs at lr=0.2, then 9 more at lr=0.05. same loop body, re-run with a lower lr.
     # This prevents learning from being too spiky when its almost generalized
-    for epochs, lr in [(27, 0.2), (9, 0.05)]:
+    for epochs, lr in [(27, 0.2), (5, 0.05)]:
         print(f"\n=== {epochs} epochs at lr={lr} ===")
         for epoch in range(epochs):
             order = torch.randperm(n_train)
